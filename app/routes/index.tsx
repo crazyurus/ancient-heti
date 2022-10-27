@@ -30,10 +30,12 @@ function Index(): JSX.Element {
       const heti = new Heti('.heti');
       heti.autoSpacing();
     });
+
+    document.title = title;
   }, []);
 
   return (
-    <div className={`container heti heti--${type}`}>
+    <div className={`container heti heti--classic heti--${type}`}>
       <h1>{title}</h1>
       <p className="heti-meta heti-small">作者：〔{author.dynasty}〕<abbr title={author.name}>{author.name}</abbr></p>
       {foreword ? <blockquote>{foreword}</blockquote> : null}
