@@ -1,14 +1,28 @@
 import React, { useEffect } from 'react';
 import { json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import 'heti/umd/heti.min.css';
+import { getRandomArticle } from '../models/article.server';
+import type { Article } from '../models/article.server';
+import hetiStyle from 'heti/umd/heti.min.css';
+import pageStyle from '../styles/index.css';
 
-export function loader() {
-  return null;
+export const links = () => [
+  { rel: 'stylesheet', href: hetiStyle },
+  { rel: 'stylesheet', href: pageStyle }
+];
+
+export async function loader() {
+  const article = await getRandomArticle();
+
+  return json<Article>(article);
 }
 
-function Article(): JSX.Element {
-  const article = useLoaderData();
+function Index(): JSX.Element {
+  const article: Article = useLoaderData();
+  const { title, type, author, foreword, content } = article;
+  const formatContent = content.split('\n').map(sentence => {
+    return <p>{sentence}</p>;
+  });
 
   useEffect(() => {
     import('heti/umd/heti-addon.min.js').then(module => {
@@ -19,35 +33,13 @@ function Article(): JSX.Element {
   }, []);
 
   return (
-    <div className="heti">
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
+    <div className={`container heti heti--${type}`}>
+      <h1>{title}</h1>
+      <p className="heti-meta heti-small">作者：〔{author.dynasty}〕<abbr title={author.name}>{author.name}</abbr></p>
+      {foreword ? <blockquote>{foreword}</blockquote> : null}
+      {formatContent}
     </div>
   );
 }
 
-export default Article;
+export default Index;

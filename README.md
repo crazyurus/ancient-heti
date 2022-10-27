@@ -2,7 +2,7 @@
 
 采用 `heti.css` 排版
 
-https://wenyan-heti.vercel.app/
+https://ancient-heti.vercel.app/
 
 `React` + `Remix`
 

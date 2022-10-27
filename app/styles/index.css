@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 48px 0;
+  background-color: #ededed;
+}
+
+.container {
+  border-radius: 2px;
+  box-shadow: 0 8px 32px rgb(0 0 0 / 32%);
+  background-color: white;
+  margin: 0 auto;
+  padding: 48px;
+  min-height: 100%;
+}

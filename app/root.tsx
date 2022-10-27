@@ -20,7 +20,6 @@ export default function App() {
       <head>
         <Meta />
         <Links />
-        <link rel="stylesheet" href="//unpkg.com/heti/umd/heti.min.css" />
       </head>
       <body>
         <Outlet />

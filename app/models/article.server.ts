@@ -1,16 +1,20 @@
-interface Article {
+import { getRandom } from '../utils/math';
+
+export interface Article {
   title: string;
+  type: 'ancient' | 'poetry';
   author: {
     name: string;
     dynasty: string;
   };
+  foreword?: string;
   content: string;
-  notes: string;
-  reviews: string;
 }
 
-async function getRandomArticle(): Promise<Article> {
-  await fetch('https://raw.githubusercontent.com/caoxingyu/chinese-gushiwen/master/guwen/guwen0-1000.json');
-}
+export async function getRandomArticle(): Promise<Article> {
+  const random = getRandom(1000);
+  const response = await fetch('https://raw.githubusercontent.com/crazyurus/ancient-heti/main/data/0.json');
+  const articles = await response.json();
 
-export default getRandomArticle;
+  return articles[random];
+}
