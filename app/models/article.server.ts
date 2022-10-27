@@ -12,9 +12,10 @@ export interface Article {
 }
 
 export async function getRandomArticle(): Promise<Article> {
-  const random = getRandom(1000);
-  const response = await fetch('https://raw.githubusercontent.com/crazyurus/ancient-heti/main/data/0.json');
+  const fileID = getRandom(20);
+  const articleID = getRandom(50);
+  const response = await fetch(`https://raw.githubusercontent.com/crazyurus/ancient-heti/main/data/${fileID}.json`);
   const articles = await response.json();
 
-  return articles[random];
+  return articles[articleID];
 }

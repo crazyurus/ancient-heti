@@ -37,7 +37,7 @@ function Index(): JSX.Element {
   return (
     <div className={`container heti heti--classic heti--${type}`}>
       <h1>{title}</h1>
-      <p className="heti-meta heti-small">作者：〔{author.dynasty}〕<abbr title={author.name}>{author.name}</abbr></p>
+      <p className="heti-meta heti-small">〔{author.dynasty}〕<abbr title={author.name}>{author.name}</abbr></p>
       {foreword ? <blockquote>{foreword}</blockquote> : null}
       {formatContent}
     </div>

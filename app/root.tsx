@@ -10,11 +10,11 @@ import {
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
-  title: '文言文',
-  viewport: 'width=device-width,initial-scale=1',
+  title: '古文',
+  viewport: 'width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1',
 });
 
-export default function App() {
+function App(): JSX.Element {
   return (
     <html lang="zh-CN">
       <head>
@@ -30,3 +30,5 @@ export default function App() {
     </html>
   );
 }
+
+export default App;
